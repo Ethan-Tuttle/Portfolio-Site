@@ -89,13 +89,119 @@ async function buildReport( results , url ) {
     // When the results.report_card.status exists, we need to set an interval. When the status no longer exists, we are done
     // ...is starting_progress_report
     // ...is calulating_progress_report
-    // ...updating_progress_report
+    // ...is updating_progress_report
     // For now it'll just be a status message but eventually a refresh will happen on its own
     if ( typeof(results.report_card.status) != 'undefined' ) {
-        resultsBody.innerHTML = results.report_card.status;
+        const dataStillLoading = document.querySelector('#data-still-loading');
+        dataStillLoading.classList.remove('hidden');
+        const heading = dataStillLoading.querySelector('.loading-status');
+        const msg = dataStillLoading.querySelector('.loading-desc');
+
+        if ( results.report_card.status == "starting_progress_report" ) {
+            heading.innerHTML = 'Running Your First Report';
+            msg.innerHTML = 'We are running your very first report. Hold tight! This can take up to 5 minutes. If you want to check your progress, refresh the page and run your report again.';
+        } else if ( results.report_card.status == "calulating_progress_report" ) {
+            heading.innerHTML = 'Calculating Your Report';
+            msg.innerHTML = 'We are running currently processing the data for your report. Hold tight! This can take up to 5 minutes. If you want to check your progress, refresh the page and run your report again.';
+        } else if ( results.report_card.status == "updating_progress_report" ) {
+            heading.innerHTML = 'Your Report Data is Out of Date';
+            msg.innerHTML = 'It looks like your report is a bit out of date. We are working on getting your updated data. Hold tight! This can take up to 5 minutes. If you want to check your progress, refresh the page and run your report again.';
+        }
+        
         return;
     }
     
     //... load the data into the document
-    resultsBody.innerHTML = JSON.stringify( results.report_card );
+    resultsBody.innerHTML = '';
+    resultsBody.classList.add('grid');
+        
+    let resultTables = [`
+        <table>
+            <tr>
+                <th>Total Raid Clears</th>
+                <th>Total Score</th>
+            
+            </tr>
+            <tr>
+                <td>${results.report_card.totalRaidClears.total}</td>
+                <td>${results.report_card.totalRaidClears.score.toFixed( 2 )}</td>
+            </tr>
+        </table>` ,
+        `<table>
+        <tr>
+            <th>Total Day One Raid Clears</th>
+            <th>Total Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.totalDayOneRaidClears.total}</td>
+            <td>${results.report_card.totalDayOneRaidClears.score.toFixed( 2 )}</td>
+        </tr>
+        </table>`,
+        `<table>
+        <tr>
+            <th>Total Low Man Raid Clears</th>
+            <th>Total Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.totalLowManRaidClears.total}</td>
+            <td>${results.report_card.totalLowManRaidClears.score.toFixed( 2 )}</td>
+        </tr>
+        </table>`,
+        `<table>
+        <tr>
+            <th>Total Flawless Raid Clears</th>
+            <th>Total Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.totalFlawlessRaidClears.total}</td>
+            <td>${results.report_card.totalFlawlessRaidClears.score.toFixed( 2 )}</td>
+        </tr>
+        </table>`,
+        `<table>
+        <tr>
+            <th>Total Dungeon Clears</th>
+            <th>Total Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.totalDungeonClears.total}</td>
+            <td>${results.report_card.totalDungeonClears.score.toFixed( 2 )}</td>
+        </tr>
+        </table>`,
+        `<table>
+        <tr>
+            <th>Total Day One Dungeon Clears</th>
+            <th>Total Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.totalDayOneDungeonClears.total}</td>
+            <td>${results.report_card.totalDayOneDungeonClears.score.toFixed( 2 )}</td>
+        </tr>
+        </table>`,
+        `<table>
+        <tr>
+            <th>Total Solo Flawless Dungeon Clears</th>
+            <th>Total Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.totalSoloFlawlessDungeonClears.total}</td>
+            <td>${results.report_card.totalSoloFlawlessDungeonClears.score.toFixed( 2 )}</td>
+        </tr>
+        </table>`,
+        `<table>
+        <tr>
+            <th>Overall Rank</th>
+            <th>Overall Score</th> 
+        </tr>
+        <tr>
+            <td>${results.report_card.rank}</td>
+            <td>${results.report_card.total_points.toFixed( 2 )}</td>
+        </tr>
+        </table>`
+    ];
+
+    for ( let table of resultTables ) {
+        let element = document.createElement('div');
+        element.innerHTML = table;
+        resultsBody.append( element );
+    }
 }

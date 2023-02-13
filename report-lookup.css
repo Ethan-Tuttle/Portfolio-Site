@@ -156,6 +156,55 @@ hr {
     }
 }
 
+.report-results {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui;
+    background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+#results {
+    max-width: 1200px;
+    width: 85%;
+    min-width: 350px;
+    margin: 0 auto;
+    border: solid 1px #000;
+    border-radius: 4px;
+    padding: 20px;
+    background: #eee;
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+}
+
+#results .row {
+    display: flex;
+    gap: 10px;
+}
+
+#results .heading {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+#results table {
+    width: 100%;
+    text-align: left;
+}
+
+#results table tr th,
+#results table tr td {
+    width: 50%;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
 .hidden {
     display: none;
 }
