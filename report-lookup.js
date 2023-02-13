@@ -66,24 +66,36 @@ async function runReportLookup( ) {
     const results = await response.json();
     description.innerHTML = 'Data has been retrieved! Redirecting to your report...';
 
-    setTimeout( () => {
-        buildReport( results );
+    setTimeout( async () => {
+        await buildReport( results , url );
     } , 3000 );
 
     return;
 }
 
-function buildReport( results ) {
+async function buildReport( results , url ) {
     const searchSection = document.querySelector('.search-section');
     searchSection.classList.add('hidden');
     const resultsSection = document.querySelector('.report-results');
     const resultsBody = resultsSection.querySelector('#results');
     resultsSection.classList.remove('hidden');
 
-    if ( results.message = "" ) {
-        
+    // When the results are from the main endpoint...
+    if ( typeof(results.report_card) === 'undefined' ) {
+        resultsBody.innerHTML = results.message;
+        return;
     }
 
-    resultsBody.innerHTML = results;
-    return;
+    // When the results.report_card.status exists, we need to set an interval. When the status no longer exists, we are done
+    // ...is starting_progress_report
+    // ...is calulating_progress_report
+    // ...updating_progress_report
+    // For now it'll just be a status message but eventually a refresh will happen on its own
+    if ( typeof(results.report_card.status) != 'undefined' ) {
+        resultsBody.innerHTML = results.report_card.status;
+        return;
+    }
+    
+    //... load the data into the document
+    resultsBody.innerHTML = JSON.stringify( results.report_card );
 }
