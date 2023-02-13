@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="/resources/images/TurtleSoft Games Logo2.ico">
+        <meta charset="UTF-8">
+        <meta name="description" content="Search Report Card">
+        <meta name="keywords" content="Destiny Report Card">
+        <meta name="author" content="Ethan Tuttle">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="/report-lookup.js"></script>
+        <link rel="stylesheet" type="text/css" href="/report-lookup.css">
+    </head>
+    <body>
+        <section class="search-section">
+            <div class="form-wrapper">
+                <h1>Generate Your Report Card</h1>
+                <input required type="text" id="report_card_url" value="" placeholder="enter your report url...">
+                <button type="button" id="report_card_lookup">
+                    <span class="button-text">
+                        Generate
+                    </span>
+                </button>
+                <hr class="divider">
+                <p class="disclaimer">The numbers in the report do not reflect real time. Your data only refreshes every 24 hours.</p>
+            </div>
+        </section>
+
+        <section class="report-results hidden">
+            <h1 class="heading">Your Results</h1>
+            <div id="results"></div>
+        </section>
+    </body>
+</html>

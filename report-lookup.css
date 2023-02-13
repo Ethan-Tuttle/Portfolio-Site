@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+}
+
+.centered {
+    text-align: center;
+}
+
+.search-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui;
+    background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+
+.form-wrapper {
+    max-width: 500px;
+    width: 85%;
+    min-width: 350px;
+    margin: 0 auto;
+    border: solid 1px #000;
+    border-radius: 4px;
+    padding: 20px;
+    background: #eee;
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.75);
+}
+
+.form-wrapper h1 {
+    margin: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #0f0c29;
+}
+
+#report_card_url {
+    width: 97%;
+    height: 23px;
+    border-radius: 6px;
+    border: solid 1px #0f0c29;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+#report_card_lookup {
+    display: block;
+    width: 160px;
+    height: 36px;
+    margin: 0;
+    color: #eee;
+    font-weight: 400;
+    background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+    border-radius: 6px;
+    border: 0.5px solid rgba(1, 11, 37, 0);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#report_card_lookup:hover {
+    cursor: pointer;
+}
+
+#report_card_lookup:active {
+    transform: scale(0.9);
+}
+
+#report_card_lookup span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+#report_card_lookup span:after {
+    content: '\279C';
+    position: absolute;
+    opacity: 0;
+    top: -1px;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+#report_card_lookup:hover span {
+    padding-right: 25px;
+}
+  
+#report_card_lookup:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.disclaimer {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.disclaimer:before {
+    content: '\2139';
+    border: solid 0.5px #000;
+    border-radius: 50%;
+    padding: 0px 6px;
+    font-size: 12px;
+    padding-bottom: 1.5px;
+    margin-right: 6px;
+}
+
+.lds-ring {
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #0f0c29;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #0f0c29 transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
